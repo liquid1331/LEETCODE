@@ -1,0 +1,15 @@
+Solution:
+
+class Solution:
+    def numJewelsInStones(self, J, S):
+        """
+        :type J: str
+        :type S: str
+        :rtype: int
+        """
+        self.J=J
+        self.S=S
+        cout=0
+        for i in range(len(J)):
+            cout+=S.count(J[i])
+        return(cout)
