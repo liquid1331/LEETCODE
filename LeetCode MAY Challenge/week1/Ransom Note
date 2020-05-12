@@ -1,0 +1,14 @@
+from collections import defaultdict
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        d=defaultdict(int)
+        for i in magazine:
+            d[i]+=1
+        d1=defaultdict(int)
+        for i in ransomNote:
+            d1[i]+=1
+        for i in d1:
+            if d[i]<d1[i]:
+                return False
+        return True
+            
