@@ -1,0 +1,29 @@
+from collections import deque
+class Solution:
+    def isCousins(self, root: TreeNode, x: int, y: int) -> bool:
+        if root==None:
+            return
+        q=deque()
+        q.append([root,None])
+        f=0
+        while q:
+            f=0
+            c=set()
+            for i in range(len(q)):
+                t=q.popleft()
+                if t[0].val in [x,y]:
+                    if t[1]!=None:
+                        c.add(t[1].val)
+                        # print(c)
+                    f+=1
+                if t[0].left:
+                    q.append([t[0].left,t[0]])
+                if t[0].right:
+                    q.append([t[0].right,t[0]])
+            if f==2:
+                if len(c)<2:
+                    return False
+                return True
+            if f==1:
+                return False
+        return False
