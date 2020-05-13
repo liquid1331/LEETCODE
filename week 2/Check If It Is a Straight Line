@@ -1,0 +1,38 @@
+
+class Solution:
+    def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
+        x=coordinates[1][1]-coordinates[0][1]
+        y=coordinates[1][0]-coordinates[0][0]
+        print(x,y)
+        g=math.gcd(x,y)
+        print(g)
+        k=0
+        if x<0 and y<0:
+            g=-g
+        elif x<0:
+            k=1
+        elif y<0:
+            k=1
+            x=-x
+            y=-y
+        m=abs(x//g)
+        m1=abs(y//g)
+        print(m,m1)
+        for i in range(2,len(coordinates)-1):
+            x=coordinates[i+1][1]-coordinates[i][1]
+            y=coordinates[i+1][0]-coordinates[i][0]
+            g=math.gcd(x,y)
+            ans=0
+            if x<0 and y<0:
+                g=-g
+            elif x<0:
+                ans=1
+            elif y<0:
+                ans=1
+                x=-x
+                y=-y
+            if (m==0 and x//g==0) or (m1==0 and y//g==0):
+                continue
+            if m!=abs(x//g) or m1!=(y//g) or ans!=k:
+                return False
+        return True
