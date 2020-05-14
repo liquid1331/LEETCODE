@@ -1,0 +1,20 @@
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+            t=(sr,sc)
+            t1=image[sr][sc]
+            stack=[]
+            visited=[[False for i in range(len(image[0]))]for j in range(len(image))]
+            # print(visited)
+            stack.append(t)
+            while stack:
+                i,j=stack.pop()
+                if i<0 or j<0 or i>=len(image) or j>=len(image[0]) or visited[i][j]:
+                    continue
+                if image[i][j]==t1:
+                    image[i][j]=newColor
+                    visited[i][j]=True
+                    stack.append((i,j-1))
+                    stack.append((i,j+1))
+                    stack.append((i+1,j))
+                    stack.append((i-1,j))
+            return image
