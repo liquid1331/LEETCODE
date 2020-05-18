@@ -1,0 +1,24 @@
+from collections import defaultdict
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        d=defaultdict(int)
+        ans=defaultdict(int)
+        if len(s1)>len(s2):
+            return False
+        for i in s1:
+            d[i]+=1
+        for i in range(0,len(s1)):
+            ans[s2[i]]+=1
+        if d==ans:
+            return True
+        # print(d)
+        # print(ans)
+        for i in range(len(s1),len(s2)):
+            ans[s2[i-len(s1)]]-=1
+            if ans[s2[i-len(s1)]]==0:
+                del ans[s2[i-len(s1)]]
+            ans[s2[i]]+=1
+            if ans==d:
+                return True
+        # print (d,ans)
+        return False
