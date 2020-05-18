@@ -1,0 +1,23 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        n=len(s)
+        m=len(p)
+        if m>n:
+            return []
+        d1=collections.defaultdict(int)
+        d2=collections.defaultdict(int)
+        for i in range(m):
+            d1[s[i]]+=1
+            d2[p[i]]+=1
+        ans=[]
+        if d1==d2:
+            ans=[0]
+        for i in range(m,n):
+            d1[s[i-m]]-=1
+            if d1[s[i-m]]==0:
+                del d1[s[i-m]]
+            d1[s[i]]+=1
+            # print(d1,d2)
+            if d1==d2:
+                ans.append(i-m+1)
+        return ans
