@@ -1,0 +1,35 @@
+class Solution:
+    def bstFromPreorder(self, preorder: List[int]) -> TreeNode:
+        # if not preorder:
+        #     return None
+        # root = TreeNode(preorder[0])
+        # i = 1
+        # while i<len(preorder) and  preorder[i] < root.val:
+        #     i+=1
+        # root.left = self.bstFromPreorder(preorder[1:i])
+        # root.right = self.bstFromPreorder(preorder[i:])
+        # return root
+        inoder=sorted(preorder)
+        def creation(l,r):
+            if l>=len(preorder) or l>r:
+                return None
+            root = TreeNode(preorder[l]) 
+
+            # If the current subarray has onlye one element, 
+            # no need to recur 
+            if l == r : 
+                return root  
+
+            # Search for the first element greater than root 
+            i = l+1
+            while i<len(preorder) and  preorder[i] < root.val:
+                i+=1
+
+            # Use the index of element found in preorder to divide 
+            # preorder array in two parts. Left subtree and right 
+            # subtree  
+            root.left = creation(l+1,i-1)  
+
+            root.right = creation(i,r)  
+            return root 
+        return creation(0,len(preorder))
