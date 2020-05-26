@@ -1,0 +1,23 @@
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        t=0
+        d=collections.defaultdict(list)
+        d[0]=[0]
+        for j,i in enumerate(nums):
+            if i==0:
+                t-=1
+                d[t].append(j)
+            else:
+                t+=1
+                d[t].append(j)
+        print(d)
+        ans=0
+        for i in d:
+            k=d[i][-1]-d[i][0]
+            if k%2==1:
+                k+=1
+            
+            ans=max(ans,k)
+        return ans
+            
+       
