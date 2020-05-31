@@ -1,0 +1,12 @@
+from heapq import heappop, heappush
+class Solution:
+    def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+        l=[]
+        for i in points:
+            k=[i[0]**2+i[1]**2,i]
+            heappush(l,k)
+        ans=[]
+        for i in range(K):
+            x=heappop(l)
+            ans.append(x[1])
+        return ans
