@@ -1,0 +1,24 @@
+class Solution:
+    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+        l=list(map(lambda t: (t[0],t[1],t[0]-t[1]),costs))
+        l.sort(key=lambda t:abs(t[2]),reverse=True)
+        a=len(costs)//2
+        b=len(costs)//2
+        total=0
+        while a>0 and b>0:
+            t=l.pop(0)
+            if t[2]>=0:
+                b-=1
+                total+=t[1]
+            else:
+                a-=1
+                total+=t[0]
+        if a>0:
+            total+=sum(list(map(lambda t: t[0], l)))
+            a-=1
+        else:
+            total+=sum(list(map(lambda t: t[1], l)))
+            b-=1
+        return total
+                
+        
