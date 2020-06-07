@@ -1,0 +1,17 @@
+class Solution:
+    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
+        people.sort()
+        n=len(people)
+        ans=[0 for i in range(len(people))]
+        for i in range(n):
+            t=0
+            for j in range(0,n):
+                if t==people[i][1]:
+                    if ans[j]==0:
+                        ans[j]=people[i]
+                        break
+                elif ans[j]==0:
+                    t+=1
+                elif ans[j][0]>=people[i][0]:
+                    t+=1  
+        return ans
