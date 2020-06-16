@@ -1,0 +1,40 @@
+class Solution:
+    def validIPAddress(self, IP: str) -> str:
+        c1 = IP.count(".")
+        c2 = IP.count(":")
+        if c1==3 and c2==0:
+            IP=IP.split(".")
+            # ans=[]
+            for i in IP:
+                try:
+                    if i[0]=="-":
+                        return "Neither"
+                    t=int(i)
+                    if t<0 or t>255:
+                        return "Neither"
+                    if i[0]=="0" and (len(set(i[0]))>1 or len(i)>1):
+                        return "Neither"
+                except:
+                    return "Neither"
+            return "IPv4"
+            
+        elif c2==7 and c1==0:
+            IP=IP.split(":")
+            # ans=[]
+            for i in IP:
+                try:
+                    if len(i)>4:
+                        return "Neither"
+                    if i[0]=="-":
+                        return "Neither"
+                    t=int(i.lower(),16)
+                    # if t<0 or t>255:
+                    #     return "Neither"
+                    if i[0]=="0" and (len(set(i[0]))>1):
+                        return "Neither"
+                except:
+                    return "Neither"
+            return "IPv6"
+        else:
+            return "Neither"
+        
