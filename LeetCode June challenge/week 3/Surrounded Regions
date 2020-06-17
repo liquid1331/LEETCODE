@@ -1,0 +1,45 @@
+from collections import deque
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        
+        """
+        def fun(row,col):
+            q=deque()
+            q.append((row,col))
+            while q:
+                x,y = q.popleft()
+                if x<0 or x>=n or y<0 or y>=m or (x,y) in visited:
+                    continue
+                if board[x][y]=="O":
+                    board[x][y]=-1
+                    q.append((x-1,y))
+                    q.append((x+1,y))
+                    q.append((x,y-1))
+                    q.append((x,y+1))
+        n=len(board)
+        if n==0:
+            return board
+        m=len(board[0])
+        if n==0 or m==0:
+            return board
+        visited=set()
+        for j in range(m):
+            if board[0][j]=="O" and (0,j) not in visited:
+                fun(0,j)
+            if board[n-1][j]=="O" and (n-1,j) not in visited:
+                fun(n-1,j)
+        for i in range(n):
+            j=0
+            if board[i][j]=="O" and (i,j) not in visited:
+                fun(i,j)
+            if board[i][m-1]=="O" and (i,m-1) not in visited:
+                fun(i,m-1)
+        # print(board)
+        for i in range(n):
+            for j in range(m):
+                if board[i][j]==-1:
+                    board[i][j]="O"
+                elif board[i][j]=="O":
+                    board[i][j]="X"
