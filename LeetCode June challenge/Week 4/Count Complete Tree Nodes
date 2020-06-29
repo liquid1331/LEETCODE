@@ -1,0 +1,11 @@
+class Solution:
+    def __init__(self):
+        self.ans = 0
+    def countNodes(self, root: TreeNode) -> int:
+        def count(root):
+            if root:
+                count(root.left)
+                self.ans+=1
+                count(root.right)
+        count(root)
+        return self.ans
