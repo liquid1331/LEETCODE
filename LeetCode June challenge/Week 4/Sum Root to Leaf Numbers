@@ -1,0 +1,15 @@
+class Solution:
+    
+    def sumNumbers(self, root: TreeNode) -> int:
+        self.ans=0
+        def inorder(root,a):
+            if root==None:
+                return 1,0
+            if root.right==None and root.left==None:
+                # self.ans += int(a+str(root.val),10)
+                return 1,root.val
+            i,l = inorder(root.left)
+            j,r = inorder(root.right)
+        inorder(root,"")
+        
+        return self.ans
