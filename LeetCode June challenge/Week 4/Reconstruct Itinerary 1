@@ -1,0 +1,15 @@
+from collections import defaultdict,deque
+class Solution:
+    def findItinerary(self, tickets):
+        targets = collections.defaultdict(list)
+        for a, b in sorted(tickets)[::-1]:
+            # print(a,b)
+            targets[a] += b,
+        route = []
+        # print(targets)
+        def visit(airport):
+            while targets[airport]:
+                visit(targets[airport].pop())
+            route.append(airport)
+        visit('JFK')
+        return route[::-1]
