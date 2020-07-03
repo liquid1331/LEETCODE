@@ -1,0 +1,37 @@
+class Solution:
+    def prisonAfterNDays(self, cells: List[int], N: int) -> List[int]:
+        def check(s):
+            ans = "0"
+            for i in range(1,len(s)-1):
+                if s[i-1]==s[i+1]:
+                    ans+="1"
+                else:
+                    ans+="0"
+            ans+="0"
+            return ans
+        if N==0:
+            return cells
+        d = dict()
+        s = "".join(map(str,cells))
+        d[0]=int(s,2)
+        se = set()
+        se.add(int(s,2))
+        count = 0
+        
+        while True:
+            s=check(s)
+            
+            n = int(s,2)
+            if n in se:
+                break
+            else:
+                count+=1
+                d[count] = n
+                se.add(n)
+            # s = "".join(str,n)
+        # print(count)
+        # print(d[N%count])
+        # print(d)
+        # if N%count
+        k=list(bin(d[(N-1)%(count)])[2:])
+        return ["0"]*(len(cells)-len(k)) + k  
