@@ -1,0 +1,16 @@
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        digits.reverse()
+        t=1
+        for i in range(len(digits)):
+            digits[i]+=(t)
+            t=0
+            if digits[i]>=10:
+                digits[i]=digits[i]%10
+                t=1
+            else:
+                break
+        if t==1:
+            digits.append(1)
+        digits.reverse()
+        return digits
