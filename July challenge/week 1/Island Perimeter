@@ -1,0 +1,32 @@
+class Solution:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        def traversal(x,y):
+            ans = 0
+            
+            q =collections.deque()
+            q.append((x,y))
+            while q:
+                x,y=q.popleft()
+                
+                if x<0 or x>=n or y<0 or y>=m :
+                    ans+=1
+                    continue
+                if ((x,y) in visited):
+                    # ans+=1
+                    continue
+                if grid[x][y]==1:
+                    visited.add((x,y))
+                    q.append((x+1,y))
+                    q.append((x-1,y))
+                    q.append((x,y-1))
+                    q.append((x,y+1))
+                else:
+                    ans+=1
+            return ans
+        n=len(grid)
+        m = len(grid[0])
+        visited = set()
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j]==1:
+                    return traversal(i,j)
