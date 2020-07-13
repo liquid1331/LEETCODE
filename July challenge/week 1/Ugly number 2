@@ -1,0 +1,20 @@
+from collections import deque
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        ans = [1]
+        i2,i3,i5 = 0,0,0
+        i2:int
+        while n>1:
+            a2,a3,a5=2*ans[i2],3*ans[i3],5*ans[i5]
+            m = min((a2,a3,a5))
+            if m==a2:
+                i2+=1
+            if m==a3:
+                i3+=1
+            if m==a5:
+                i5+=1
+            ans.append(m)
+            n-=1
+        return ans[-1]
+            
+       
