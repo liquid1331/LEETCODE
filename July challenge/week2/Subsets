@@ -1,0 +1,14 @@
+class Solution:
+    # def __init__(self):
+        # self.l=[]
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        def recur(nums,b):
+            if len(nums)==0:
+                ans.append(b)
+                return
+            recur(nums[1:],b+[nums[0]])
+            recur(nums[1:],b)
+            
+        recur(nums,[])
+        return ans
