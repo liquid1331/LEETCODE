@@ -1,0 +1,9 @@
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        # print(n)
+        t=bin(n)[2:][::-1]
+        # print(t)
+        while len(t)<32:
+            t+="0"
+        return int(t,2)
+        
