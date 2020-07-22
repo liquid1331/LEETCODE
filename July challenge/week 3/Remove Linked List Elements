@@ -1,0 +1,16 @@
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        while head!=None and head.val==val:
+            head=head.next
+        p=head
+        if p==None:
+            return p
+        nex = head.next
+        while nex!=None:
+            if nex.val==val:
+                p.next=nex.next
+                nex=nex.next
+            else:
+                p=p.next
+                nex=nex.next
+        return head
