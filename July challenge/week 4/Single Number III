@@ -1,0 +1,16 @@
+class Solution:
+    def singleNumber(self, nums: List[int]) -> List[int]:
+        x=0
+        for i in nums:
+            x^=i
+        x=x & ~(x-1)
+        # print(x)
+        a=0
+        b=0
+        for i in nums:
+            if x&i:
+                a^=i
+            else:
+                b^=i
+        return [a,b]
+        
