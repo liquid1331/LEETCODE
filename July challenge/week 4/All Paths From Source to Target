@@ -1,0 +1,21 @@
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        ans=[]
+        n=len(graph)-1
+        def util(v):
+            vis.add(v)
+            path.append(v)
+            if v==n:
+                ans.append(tuple(path))
+            for i in graph[v]:
+                if i not in vis:
+                    util(i)
+            path.pop()
+            vis.remove(v)
+        vis=set()
+        path = []
+        util(0)
+        return ans
+            
+            
+        
