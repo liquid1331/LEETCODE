@@ -1,0 +1,22 @@
+from collections import defaultdict
+class Solution:
+    def __init__(self):
+        self.d=defaultdict(list)
+    def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
+        if root==None:
+            return [[]]
+        def util(root,n,k):
+            if root:
+                self.d[n].append([k,root.val])
+                util(root.left,n-1,k+1)
+                util(root.right,n+1,k+1)
+        util(root,0,0)
+        l=[]
+        for i in self.d.keys():
+            self.d[i]=sorted(self.d[i])
+        for i in sorted(self.d.keys()):
+            l1=[]
+            for j in self.d[i]:
+                l1.append(j[1])
+            l.append(l1)
+        return l
