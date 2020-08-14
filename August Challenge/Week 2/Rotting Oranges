@@ -1,0 +1,63 @@
+from collections import deque
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        # print(type(grid[0][0]))
+        def fun(q):
+            ans=0
+            vis=set()
+            
+            while q:
+                i,j=q.popleft()
+                if i==-1 and j==-1:
+                    
+                    
+                    if len(q)==0:
+                        break
+                    q.append((-1,-1))
+                    ans+=1
+                    # print(q)
+                    continue
+                # if i<0 or j<0 or i>=n or j>=m or (i,j) in vis:
+                #     continue
+                else:
+                    if i+1<n and (i+1,j) not in vis:
+                        if grid[i+1][j]==1:
+                            q.append((i+1,j))
+                            vis.add((i+1,j))
+                            grid[i+1][j]=-2
+                    if j+1<m and (i,j+1) not in vis:
+                        if grid[i][j+1]==1:
+                            grid[i][j+1]=-2
+                            q.append((i,j+1))
+                            vis.add((i,j+1))
+                    if i-1>=0 and (i-1,j) not in vis:
+                        if grid[i-1][j]==1:
+                            grid[i-1][j]=-2
+                            q.append((i-1,j))
+                            vis.add((i-1,j))
+                    if j-1>=0 and (i,j-1) not in vis:
+                        if grid[i][j-1]==1:
+                            grid[i][j-1]=-2
+                            q.append((i,j-1))
+                            vis.add((i,j-1))
+                # print(q)
+            return ans
+        q=deque()
+        n=len(grid)
+        m=len(grid[0])
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]==2:
+                    q.append((i,j))
+        q.append((-1,-1))
+        # print(q)
+        ans=fun(q)
+        # print(grid)
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j]==1:
+                    return -1
+        return ans
+        
+        
+        
