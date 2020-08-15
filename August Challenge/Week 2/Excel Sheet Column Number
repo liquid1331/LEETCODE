@@ -1,0 +1,6 @@
+ans=0
+k=1
+for i in reversed(s):
+    ans+=(ord(i)-ord("A")+1)%27 * k
+    k*=26
+return ans
