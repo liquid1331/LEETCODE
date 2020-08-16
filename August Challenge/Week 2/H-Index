@@ -1,0 +1,10 @@
+class Solution:
+    def hIndex(self, citations: List[int]) -> int:
+        citations.sort()
+        ans=0
+        t=1
+        for i in reversed(citations):
+            if min(i,t)==t:
+                ans=max(t,ans)
+            t+=1
+        return ans
