@@ -1,0 +1,18 @@
+class Solution:
+    def getRow(self, rowIndex: int) -> List[int]:
+        # def b(n,r):
+        #     if r>n-r:
+        #         r=n - r
+        #     res=1
+        #     for i in range(r):
+        #         res*=(n-i)
+        #         res//=(i+1)
+        #     return res
+        ans=[]
+        a=1
+        for i in range(1,rowIndex+1):
+            ans.append(a)
+            a=a*(rowIndex-i+1)//i
+        ans.append(a)
+        return ans
+    
