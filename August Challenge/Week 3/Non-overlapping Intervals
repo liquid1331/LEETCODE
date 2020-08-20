@@ -1,0 +1,23 @@
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        
+        if len(intervals)<=1:
+            return 0
+        
+        n = len(intervals)
+        
+        intervals.sort()
+        stack=[intervals[0]]
+        ans=0
+        for i in range(1,len(intervals)):
+            if intervals[i][0]<stack[-1][1]:
+                ans+=1
+                t=stack.pop()
+                if t[1]<intervals[i][1]:
+                    stack.append(t)
+                else:
+                    
+                    stack.append(intervals[i])
+            else:
+                stack.append(intervals[i])
+        return ans
