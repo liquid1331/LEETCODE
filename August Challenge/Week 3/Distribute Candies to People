@@ -1,0 +1,17 @@
+class Solution:
+    def distributeCandies(self, candies: int, num_people: int) -> List[int]:
+        n=1
+        a = [0 for i in range(num_people)]
+        i=0
+        while candies!=0:
+            if n<candies:
+                a[i] += n
+                candies-=n
+            else:
+                a[i]+=candies
+                candies = 0
+            n+=1
+            i+=1
+            i%=num_people
+                
+        return a
