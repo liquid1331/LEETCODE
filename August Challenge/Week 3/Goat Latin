@@ -1,0 +1,14 @@
+class Solution:
+    def toGoatLatin(self, S: str) -> str:
+        a = "a"
+        l = list(S.split())
+        # print(l.split())
+        for j in range(len(l)):
+            i = l[j]
+            if i[0].lower() in ("a","e","i","o","u"):
+                l[j] = l[j]+"ma"+a
+            else:
+                l[j] = l[j][1:]+l[j][0]+"ma"+a
+            a+="a"
+        return " ".join(l)
+        
