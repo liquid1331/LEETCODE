@@ -1,0 +1,38 @@
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if head==None:
+            return True
+        slow=head
+        fast=head
+        g=head
+        n=0
+        while g!=None:
+            n+=1
+            g=g.next
+        n=n//2
+        while fast.next!=None and fast.next.next!=None:
+            fast=fast.next.next
+            slow=slow.next
+        
+        prev=slow
+        curr=slow.next
+        slow.next=None
+        while curr!=None:
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr= next
+        tail = prev
+        k=head
+        while n>0:
+            c=tail.next
+            h=k.next
+            k.next=tail
+            tail.next = h
+            k=h
+            tail = c
+            n-=1
+        return head
