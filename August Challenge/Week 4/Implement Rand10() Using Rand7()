@@ -1,0 +1,6 @@
+class Solution:
+    def rand10(self):
+        import time
+        t=time.time()
+        r=int(t*10**6)%10+1
+        return r
