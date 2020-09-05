@@ -1,0 +1,29 @@
+class Solution(object):
+    def deleteNode(self, root, key):
+        """
+        :type root: TreeNode
+        :type key: int
+        :rtype: TreeNode
+        """
+        
+        def down(root, node):
+            while root.left:
+                root = root.left
+            root.left = node
+        
+        def helper(node):
+            if not node:
+                return None
+            if node.val == key:
+                if node.left and node.right:
+                    down(node.right, node.left)
+                    node.left = None
+                    return node.right
+                return node.left if node.left else node.right
+            elif node.val < key:
+                node.right = helper(node.right)
+            else:
+                node.left = helper(node.left)
+            return node
+        
+        return helper(root)
