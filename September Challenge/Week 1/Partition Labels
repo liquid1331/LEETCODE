@@ -1,0 +1,35 @@
+from collections import defaultdict
+class Solution:
+    def partitionLabels(self, S: str) -> List[int]:
+        d = defaultdict(int)
+        arr = []
+        temp = [0 for i in range(26)]
+        for i in reversed(S):
+            a = [i for i in temp]
+            a[ord(i)-ord("a")]+=1
+            temp = a
+            arr.append(a)
+        arr.reverse()
+        # print(arr)
+        temp = 0
+        ans = []
+        m = 1
+        s = set()
+        for i in range(len(arr)):
+            s.add(S[i])
+            temp+=1
+            m = max(m,temp)
+            if arr[i][ord(S[i])-ord("a")]==1:
+                s.remove(S[i])
+                # print(s)
+            if len(s)==0:
+                temp = 0
+                ans.append(m)
+                m=0
+                s=set()
+            # print(s)
+        return ans
+            
+            
+            
+        
