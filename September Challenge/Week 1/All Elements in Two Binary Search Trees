@@ -1,0 +1,45 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def getAllElements(self, root1: TreeNode, root2: TreeNode) -> List[int]:
+        stack1 = []
+        stack2 = []
+        curr1 = root1
+        curr2 = root2
+        ans = []
+        while (stack1 or curr1) and (stack2 or curr2):
+            while curr1!=None:
+                stack1.append(curr1)
+                curr1 = curr1.left
+            while curr2!=None:
+                stack2.append(curr2)
+                curr2 = curr2.left
+            if stack1[-1].val<=stack2[-1].val:
+                ans.append(stack1[-1].val)
+                curr1 = stack1.pop().right
+                # stack1.append(curr1)
+            else:
+                ans.append(stack2[-1].val)
+                curr2 = stack2.pop().right
+                # stack2.append(curr2)
+        while stack1 or curr1:
+            while curr1:
+                stack1.append(curr1)
+                curr1 = curr1.left
+            else:
+                curr1 = stack1.pop()
+                ans.append(curr1.val)
+                curr1 = curr1.right
+        while stack2 or curr2:
+            while curr2:
+                stack2.append(curr2)
+                curr2 = curr2.left
+            else:
+                curr2 = stack2.pop()
+                ans.append(curr2.val)
+                curr2 = curr2.right
+        return ans
