@@ -1,0 +1,16 @@
+class Solution:
+    def sumRootToLeaf(self, root: TreeNode) -> int:
+        ans = 0
+        def recur(root,a):
+            if root==None:
+                return 
+            if root.left==None and root.right==None:
+                
+                nonlocal ans
+                a+=str(root.val)
+                ans+=int(a,2)
+                return 
+            recur(root.left,a+str(root.val))
+            recur(root.right,a+str(root.val))
+        recur(root,"")
+        return ans
