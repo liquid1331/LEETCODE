@@ -1,0 +1,25 @@
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        if k==0 and n==0:
+            return [[]]
+        if k==0 or n==0:
+            return []
+        ans = []
+        def recur(st,k,n,arr):
+            # print(n,k)
+            if k<0 or n<0:
+                return
+            # if arr and arr[0]==3:
+                # print(arr)
+            if k==0 and n==0:
+                
+                # print(st)
+                nonlocal ans
+                ans.append(tuple(arr))
+                return 
+             
+            for i in range(st,10):
+                recur(i+1,k-1,n-i,arr+[i])
+        recur(1,k,n,[])
+        return ans
+        
